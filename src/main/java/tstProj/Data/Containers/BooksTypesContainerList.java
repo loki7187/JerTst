@@ -55,5 +55,12 @@ public class BooksTypesContainerList implements BooksTypesContainer {
 		l.remove(bt);
 		
 	}
+	
+	@Override
+	public BooksTypes GetByBookType(String t) {
+		Optional<BooksTypes> ret = null;
+		ret = l.stream().filter(e -> (e.getTypeName().equals(t)) ? true : false).findFirst();
+		return ret.get();
+	}
 
 }                   

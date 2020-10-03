@@ -8,6 +8,8 @@ public interface UsersContainer {
 	
 	public Users GetById (long ID);	
 	
+	public Users GetByUserName (String n);
+	
 	public void Save (Users u);
 	
 	public void Update (Users u);

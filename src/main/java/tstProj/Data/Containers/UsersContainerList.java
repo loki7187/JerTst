@@ -8,7 +8,7 @@ import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.UsersContainer;
 
 public class UsersContainerList implements UsersContainer {
-	
+
 	private ArrayList<Users> l;
 	private static final UsersContainerList st = new UsersContainerList();
 
@@ -60,5 +60,11 @@ public class UsersContainerList implements UsersContainer {
 	public Boolean CheckUsrPwd(String userName, String password) {
 		Optional<Users> usr = l.stream().filter(e -> e.getUserName().equals(userName) ? true : false).findFirst();
 		return usr.get().getPassword().equals(password);
+	}
+
+	public Users GetByUserName(String n) {
+		Optional<Users> ret = null;
+		ret = l.stream().filter(e -> (e.getUserName().equals(n)) ? true : false).findFirst();
+		return ret.get();
 	}
 }

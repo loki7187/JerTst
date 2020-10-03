@@ -7,6 +7,8 @@ import tstProj.Data.Entities.BooksTypes;
 public interface BooksTypesContainer {
 	
 	public BooksTypes GetById(long ID);
+	
+	public BooksTypes GetByBookType (String t);
 
 	public void Save(BooksTypes bt);
 
