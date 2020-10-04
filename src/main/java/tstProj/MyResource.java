@@ -32,20 +32,6 @@ public class MyResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
     	
-    	BooksContainer books = BooksContainerList.GetInstance();
-    	BooksTypesContainer booksTypes = BooksTypesContainerList.GetInstance();
-    	UsersContainer users = UsersContainerList.GetInstance();
-    	
-    	String userName = "stranger";
-    	users.Save(new Users(userName, "vrempass", "C:\\", 1986));
-    	booksTypes.Save(new BooksTypes(MyConstants.BookType1));
-    	booksTypes.Save(new BooksTypes(MyConstants.BookType2));
-    	books.Save(new Books("Я, любимый"
-    			, "tstProj"
-    			, 2020
-    			, booksTypes.GetByBookType(MyConstants.BookType1)
-    			, users.GetByUserName(userName)));
-    	
         return "Got it!";
     }
 }

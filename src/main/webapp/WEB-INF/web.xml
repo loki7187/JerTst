@@ -11,8 +11,20 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
     <servlet-mapping>
         <servlet-name>Jersey Web Application</servlet-name>
-        <url-pattern>/webapi/*</url-pattern>
+        <url-pattern>/books/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Initial start data</servlet-name>
+        <servlet-class>tstProj.Servlets.InitialDb</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>tstProj</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    
 </web-app>
