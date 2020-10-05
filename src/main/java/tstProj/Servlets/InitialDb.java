@@ -14,12 +14,16 @@ import tstProj.Data.Interfaces.BooksTypesContainer;
 import tstProj.Data.Interfaces.UsersContainer;
 
 public class InitialDb extends HttpServlet {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7427410185421697295L;
+	public static final BooksContainer books = BooksContainerList.GetInstance();
+	public static final BooksTypesContainer booksTypes = BooksTypesContainerList.GetInstance();
+	public static final UsersContainer users = UsersContainerList.GetInstance();
 
 	public InitialDb () {
-		
-		BooksContainer books = BooksContainerList.GetInstance();
-    	BooksTypesContainer booksTypes = BooksTypesContainerList.GetInstance();
-    	UsersContainer users = UsersContainerList.GetInstance();
     	
     	String userName = "stranger";
     	users.Save(new Users(userName, "vrempass", "C:\\books\\stranger", 1986));

@@ -14,6 +14,7 @@ import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.BooksContainer;
 import tstProj.Data.Interfaces.UsersContainer;
 import tstProj.Other.Books1;
+import tstProj.Servlets.InitialDb;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +30,8 @@ public class UserResource {
 	private BooksContainer books;
 	
 	public UserResource () {
-		users = UsersContainerList.GetInstance();
-		books = BooksContainerList.GetInstance();
+		users = InitialDb.users;
+		books = InitialDb.books;
 	}
 	
 	@GET
@@ -39,34 +40,26 @@ public class UserResource {
 	public String IsPwdValid(@DefaultValue("noPwd") @QueryParam("pwd") String pwd
 			,@DefaultValue("stranger") @QueryParam("usrName") String usrName) {
 		
-		
-		Users u = users.GetByUserName(usrName);
-		String res = "no";
-		if (u != null) {
-			if (u.getPassword().equals(pwd)) {
-				res = "yes";
-			}
-		}
-		return res;
+		return users.CheckUsrPwd(usrName, pwd)? "yes" : "no";
 	}
 	
 	@GET
 	@Path("usrBooks")
 	//@Produces("application/json")
 	@Produces (MediaType.APPLICATION_JSON)
-	public JsonObject /*List<Books>*/ GetUsrBooks (@DefaultValue("stranger") @QueryParam("usrName") String usrName) {
+	public /*JsonObject*/ List<Books> GetUsrBooks (@DefaultValue("stranger") @QueryParam("usrName") String usrName) {
 		
-		var builder = Json.createObjectBuilder();
+		//var builder = Json.createObjectBuilder();
 		Users u = users.GetByUserName(usrName);
 		ArrayList<Books> usrBooks = null;
 		if (u != null) {
 			usrBooks = (ArrayList<Books>) books.GetByUsr(u); 
 		}
-		usrBooks.stream().forEach(e -> builder.add(e.getAuthor(), e.getName()));
+		//usrBooks.stream().forEach(e -> builder.add(e.getAuthor(), e.getName()));
 		
-		return builder.build();
+		//return builder.build();
 		
-		//return usrBooks;
+		return usrBooks;
 	}
 	
 	@GET
