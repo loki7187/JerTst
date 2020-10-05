@@ -72,13 +72,15 @@ public class UserResource {
 	@GET
 	@Path("usrBooks1")
     @Produces(MediaType.APPLICATION_JSON)
-    public /*List<Books1>*/ String ListMyJson() {
+    public List<Books1> /*String*/ ListMyJson() {
 		ArrayList<Books1> l = new ArrayList<Books1>();
 		l.add(new Books1());
-        return "MyBean{" +
+        /*return "MyBean{" +
         "anyString='" + "ejf" + '\'' +
         ", anyNumber=" + "ehfwkehf" +
-        '}';
+        '}';*/
+		
+		return l;
     }
 	
 	
