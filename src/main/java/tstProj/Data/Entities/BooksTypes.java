@@ -1,8 +1,10 @@
 package tstProj.Data.Entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+@Entity
 public class BooksTypes {
 	
 	private @Id @GeneratedValue long ID;

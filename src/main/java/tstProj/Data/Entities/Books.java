@@ -1,9 +1,11 @@
 package tstProj.Data.Entities;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Books {
 	private @Id @GeneratedValue long ID;
 	private String author;
