@@ -1,5 +1,7 @@
 package tstProj.Servlets;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.servlet.http.HttpServlet;
 
 import tstProj.Constants.MyConstants;
@@ -12,6 +14,7 @@ import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.BooksContainer;
 import tstProj.Data.Interfaces.BooksTypesContainer;
 import tstProj.Data.Interfaces.UsersContainer;
+import tstProj.Other.Books1;
 
 public class InitialDb extends HttpServlet {
 	
@@ -26,13 +29,62 @@ public class InitialDb extends HttpServlet {
 	public InitialDb () {
     	
     	String userName = "stranger";
-    	users.Save(new Users(userName, "vrempass", "C:\\books\\stranger", 1986));
-    	booksTypes.Save(new BooksTypes(MyConstants.BookType1));
-    	booksTypes.Save(new BooksTypes(MyConstants.BookType2));
-    	books.Save(new Books("Я, любимый"
+    	var usr = new Users(userName, "vrempass", "C:\\books\\stranger", 1986);
+    	var booksType1 = new BooksTypes(MyConstants.BookType1);
+    	var booksType2 = new BooksTypes(MyConstants.BookType2);
+    	users.Save(usr);
+    	booksTypes.Save(booksType1);
+    	booksTypes.Save(booksType2);
+    	var b1 = new Books("Я, любимый"
     			, "tstProj"
     			, 2020
     			, booksTypes.GetByBookType(MyConstants.BookType1)
-    			, users.GetByUserName(userName)));
+    			, users.GetByUserName(userName));
+    	var b2 = new Books("NoOne"
+    			, "Дивный новый мир"
+    			, 2019
+    			, booksTypes.GetByBookType(MyConstants.BookType1)
+    			, users.GetByUserName(userName));
+    	books.Save(b1);
+    	books.Save(b2);
+    	
+    	var em = getEm();
+    	
+    	em.getTransaction().begin();
+    	em.persist(usr);
+    	em.getTransaction().commit();
+    	
+    	em.getTransaction().begin();
+    	em.persist(booksType1);
+    	em.persist(booksType2);
+    	em.getTransaction().commit();
+    	
+    	em.getTransaction().begin();
+    	em.persist(b1);
+    	em.persist(b2);
+    	em.getTransaction().commit();
+    	em.close();
+	}
+	
+	public static EntityManager getEm () {
+		var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+    	var em = entityManagerFactory.createEntityManager();
+    	return em;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

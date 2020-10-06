@@ -65,13 +65,30 @@ public class UserResource {
 	@GET
 	@Path("usrBooks1")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Books1> /*String*/ ListMyJson() {
+    public List<Books1> /*String*/ GetUsrBooks1() {
 		ArrayList<Books1> l = new ArrayList<Books1>();
 		l.add(new Books1());
         /*return "MyBean{" +
         "anyString='" + "ejf" + '\'' +
         ", anyNumber=" + "ehfwkehf" +
         '}';*/
+		
+		return l;
+    }
+	
+	@GET
+	@Path("usrBooks2")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Books> /*String*/ GetUsrBooks2() {
+		ArrayList<Books> l = new ArrayList<Books>();
+		
+		var em = InitialDb.getEm();
+		em.getTransaction().begin();
+		em.createQuery("select b from Books b", Books.class)
+		.getResultList().stream().forEach(e->l.add((Books)e));
+		em.getTransaction().commit();
+		em.close();
+		
 		
 		return l;
     }

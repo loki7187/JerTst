@@ -10,7 +10,7 @@ public class BooksTypes {
 	private @Id @GeneratedValue long ID;
 	private String typeName;
 
-	private BooksTypes() {
+	public BooksTypes() {
 	}
 
 	public BooksTypes(String typeName) {
@@ -27,5 +27,17 @@ public class BooksTypes {
 	
 	public long getID() {
 		return ID;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		BooksTypes other = (BooksTypes) obj;
+		return this.getID() == other.getID();
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 }

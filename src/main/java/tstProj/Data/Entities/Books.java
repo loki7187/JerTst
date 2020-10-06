@@ -16,7 +16,7 @@ public class Books {
 	@ManyToOne
 	private Users usr;
 
-	private Books() {
+	public Books() {
 	};
 
 	public Books(String author, String name, Integer year, BooksTypes type, Users usr) {
@@ -67,7 +67,20 @@ public class Books {
 	public void setUsr(Users usr) {
 		this.usr = usr;
 	}
+
 	public long getID() {
 		return ID;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		Books other = (Books)obj;
+		return this.getID() == other.getID();
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 }

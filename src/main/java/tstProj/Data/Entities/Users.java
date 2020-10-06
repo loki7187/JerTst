@@ -13,7 +13,7 @@ public class Users {
 	private String avaPath;
 	private Integer yearOfBirth;
 
-	private Users() {
+	public Users() {
 	};
 
 	public Users(String userName, String password, String avaPath, Integer yearOfBirth) {
@@ -61,5 +61,17 @@ public class Users {
 
 	public Integer getYearOfBirth() {
 		return yearOfBirth;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Users other = (Users) obj;
+		return this.getID() == other.getID();
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 }
