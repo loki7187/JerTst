@@ -1,18 +1,45 @@
 package tstProj.Data.Entities;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-public class Books {
-	private @Id @GeneratedValue long ID;
+@Table(name = "Books")
+@XmlRootElement
+public class Books implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5820226182384572526L;
+
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	private Integer ID;
+	
+	@Column(name = "author")
 	private String author;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "year")
 	private Integer year;
+	
+	@JoinColumn(name = "type", referencedColumnName = "ID")
 	@ManyToOne
 	private BooksTypes type;
+
+	@JoinColumn(name = "usr", referencedColumnName = "ID")
 	@ManyToOne
 	private Users usr;
 
@@ -80,7 +107,6 @@ public class Books {
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+        return ID.hashCode();
 	}
 }

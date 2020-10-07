@@ -6,7 +6,7 @@ import tstProj.Data.Entities.Users;
 
 public interface UsersContainer {
 	
-	public Users GetById (long ID);	
+	public Users GetById (Integer ID);	
 	
 	public Users GetByUserName (String n);
 	

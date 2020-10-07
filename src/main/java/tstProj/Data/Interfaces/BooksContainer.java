@@ -7,7 +7,7 @@ import tstProj.Data.Entities.Users;
 
 public interface BooksContainer {
 	
-	public Books GetById (long ID);
+	public Books GetById (Integer ID);
 	
 	public List<Books> GetByUsr (Users usr);
 	

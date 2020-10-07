@@ -1,13 +1,30 @@
 package tstProj.Data.Entities;
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-public class BooksTypes {
+@Table(name = "BooksTypes")
+@XmlRootElement
+public class BooksTypes implements Serializable{
 	
-	private @Id @GeneratedValue long ID;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 274658246293333755L;
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	private Integer ID;
+	
+	@Column(name = "typeName")
 	private String typeName;
 
 	public BooksTypes() {
@@ -37,7 +54,6 @@ public class BooksTypes {
 	
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+        return ID.hashCode();
 	}
 }

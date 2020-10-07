@@ -2,6 +2,7 @@ package tstProj.Servlets;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServlet;
 
 import tstProj.Constants.MyConstants;
@@ -25,6 +26,9 @@ public class InitialDb extends HttpServlet {
 	public static final BooksContainer books = BooksContainerList.GetInstance();
 	public static final BooksTypesContainer booksTypes = BooksTypesContainerList.GetInstance();
 	public static final UsersContainer users = UsersContainerList.GetInstance();
+	
+	@PersistenceContext(unitName = "persistenceUnit")
+    private EntityManager em;
 
 	public InitialDb () {
     	
@@ -48,7 +52,7 @@ public class InitialDb extends HttpServlet {
     	books.Save(b1);
     	books.Save(b2);
     	
-    	var em = getEm();
+    	var em = getEntityManager();
     	
     	em.getTransaction().begin();
     	em.persist(usr);
@@ -64,11 +68,12 @@ public class InitialDb extends HttpServlet {
     	em.persist(b2);
     	em.getTransaction().commit();
     	em.close();
+
 	}
 	
-	public static EntityManager getEm () {
-		var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
-    	var em = entityManagerFactory.createEntityManager();
+	private EntityManager getEntityManager () {
+		//var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+    	//var em = entityManagerFactory.createEntityManager();
     	return em;
 	}
 }

@@ -24,7 +24,7 @@ public class UsersContainerList implements UsersContainer {
 	}
 
 	@Override
-	public Users GetById(long ID) {
+	public Users GetById(Integer ID) {
 		Optional<Users> ret = null;
 		ret = l.stream().filter(e -> (e.getID() == ID) ? true : false).findFirst();
 		return ret.get();

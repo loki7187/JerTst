@@ -24,7 +24,7 @@ public class BooksTypesContainerList implements BooksTypesContainer {
 	}
 
 	@Override
-	public BooksTypes GetById(long ID) {
+	public BooksTypes GetById(Integer ID) {
 		Optional<BooksTypes> ret = null;
 		ret = l.stream().filter(e -> (e.getID() == ID) ? true : false).findFirst();
 		return ret.get();

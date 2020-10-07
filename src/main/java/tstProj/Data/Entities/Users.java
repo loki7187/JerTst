@@ -1,16 +1,38 @@
 package tstProj.Data.Entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-public class Users {
-	private @Id @GeneratedValue long ID;
-	private @Column(unique = true) String userName;
+@Table(name = "Users")
+@XmlRootElement
+public class Users implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6366500008314320610L;
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	private Integer ID;
+	
+	@Column(name = "userName", unique = true)
+	private  String userName;
+	
+	@Column(name = "password")
 	private String password;
+	
+	@Column(name = "avaPath")
 	private String avaPath;
+	
+	@Column(name = "yearOfBirth")
 	private Integer yearOfBirth;
 
 	public Users() {
@@ -39,10 +61,6 @@ public class Users {
 		this.password = password;
 	}
 
-	public void setID(long iD) {
-		ID = iD;
-	}
-
 	public String getUserName() {
 		return userName;
 	}
@@ -62,16 +80,15 @@ public class Users {
 	public Integer getYearOfBirth() {
 		return yearOfBirth;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		Users other = (Users) obj;
 		return this.getID() == other.getID();
 	}
-	
+
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+        return ID.hashCode();
 	}
 }

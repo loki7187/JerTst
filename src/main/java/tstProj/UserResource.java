@@ -7,7 +7,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import tstProj.Data.Containers.BooksContainerDb;
 import tstProj.Data.Containers.BooksContainerList;
+import tstProj.Data.Containers.UsersContainerDb;
 import tstProj.Data.Containers.UsersContainerList;
 import tstProj.Data.Entities.Books;
 import tstProj.Data.Entities.Users;
@@ -79,17 +81,11 @@ public class UserResource {
 	@GET
 	@Path("usrBooks2")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Books> /*String*/ GetUsrBooks2() {
+    public List<Books> /*String*/ GetUsrBooks2(@DefaultValue("stranger") @QueryParam("usrName") String usrName) {
 		ArrayList<Books> l = new ArrayList<Books>();
-		
-		var em = InitialDb.getEm();
-		em.getTransaction().begin();
-		em.createQuery("select b from Books b", Books.class)
-		.getResultList().stream().forEach(e->l.add((Books)e));
-		em.getTransaction().commit();
-		em.close();
-		
-		
+		BooksContainer books = new BooksContainerDb();
+		UsersContainer users = new UsersContainerDb();
+		l = (ArrayList<Books>) books.GetByUsr(users.GetByUserName(usrName));
 		return l;
     }
 	
