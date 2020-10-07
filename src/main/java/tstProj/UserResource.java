@@ -85,7 +85,8 @@ public class UserResource {
 		ArrayList<Books> l = new ArrayList<Books>();
 		BooksContainer books = new BooksContainerDb();
 		UsersContainer users = new UsersContainerDb();
-		l = (ArrayList<Books>) books.GetByUsr(users.GetByUserName(usrName));
+		Users u = users.GetByUserName(usrName);
+		l = (ArrayList<Books>) books.GetByUsr(u);
 		return l;
     }
 	

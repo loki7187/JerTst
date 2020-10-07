@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import tstProj.Data.Entities.Books;
@@ -12,12 +13,12 @@ import tstProj.Data.Interfaces.BooksContainer;
 
 public class BooksContainerDb implements BooksContainer{
 
-	@PersistenceContext(unitName = "persistenceUnit")
-    private EntityManager _em;
+	//@PersistenceContext(unitName = "persistenceUnit")
+    //private EntityManager _em;
 	
 	private EntityManager getEntityManager () {
-		//var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
-    	//var em = entityManagerFactory.createEntityManager();
+		var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+    	var _em = entityManagerFactory.createEntityManager();
     	return _em;
 	}
 	

@@ -3,6 +3,7 @@ package tstProj.Data.Containers;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 import tstProj.Data.Entities.Users;
@@ -10,12 +11,12 @@ import tstProj.Data.Interfaces.UsersContainer;
 
 public class UsersContainerDb implements UsersContainer {
 
-	@PersistenceContext(unitName = "persistenceUnit")
-    private EntityManager _em;
+	//@PersistenceContext(unitName = "persistenceUnit")
+    //private EntityManager _em;
 	
 	private EntityManager getEntityManager () {
-		//var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
-    	//var em = entityManagerFactory.createEntityManager();
+		var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+    	var _em = entityManagerFactory.createEntityManager();
     	return _em;
 	}
 	

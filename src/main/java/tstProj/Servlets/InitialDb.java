@@ -27,8 +27,8 @@ public class InitialDb extends HttpServlet {
 	public static final BooksTypesContainer booksTypes = BooksTypesContainerList.GetInstance();
 	public static final UsersContainer users = UsersContainerList.GetInstance();
 	
-	@PersistenceContext(unitName = "persistenceUnit")
-    private EntityManager em;
+	//@PersistenceContext(unitName = "persistenceUnit")
+    //private EntityManager em;
 
 	public InitialDb () {
     	
@@ -72,8 +72,8 @@ public class InitialDb extends HttpServlet {
 	}
 	
 	private EntityManager getEntityManager () {
-		//var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
-    	//var em = entityManagerFactory.createEntityManager();
+		var entityManagerFactory = Persistence.createEntityManagerFactory("persistenceUnit");
+    	var em = entityManagerFactory.createEntityManager();
     	return em;
 	}
 }
