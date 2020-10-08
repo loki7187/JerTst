@@ -67,7 +67,7 @@ public class InitialDb extends HttpServlet {
     	em.persist(b1);
     	em.persist(b2);
     	em.getTransaction().commit();
-    	em.close();
+    	//em.close();
 
 	}
 	
