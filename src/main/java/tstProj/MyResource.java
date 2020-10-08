@@ -5,17 +5,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import tstProj.Constants.MyConstants;
-import tstProj.Data.Containers.BooksContainerList;
-import tstProj.Data.Containers.BooksTypesContainerList;
-import tstProj.Data.Containers.UsersContainerList;
-import tstProj.Data.Entities.Books;
-import tstProj.Data.Entities.BooksTypes;
-import tstProj.Data.Entities.Users;
-import tstProj.Data.Interfaces.BooksContainer;
-import tstProj.Data.Interfaces.BooksTypesContainer;
-import tstProj.Data.Interfaces.UsersContainer;
-
 /**
  * Root resource (exposed at "myresource" path)
  */

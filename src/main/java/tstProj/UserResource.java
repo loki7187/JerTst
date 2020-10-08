@@ -8,9 +8,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import tstProj.Data.Containers.BooksContainerDb;
-import tstProj.Data.Containers.BooksContainerList;
 import tstProj.Data.Containers.UsersContainerDb;
-import tstProj.Data.Containers.UsersContainerList;
 import tstProj.Data.Entities.Books;
 import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.BooksContainer;
@@ -19,11 +17,7 @@ import tstProj.Other.Books1;
 import tstProj.Servlets.InitialDb;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.json.Json;
-import javax.json.JsonObject;
 
 @Path("")
 public class UserResource {

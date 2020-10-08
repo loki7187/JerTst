@@ -2,7 +2,6 @@ package tstProj.Servlets;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServlet;
 
 import tstProj.Constants.MyConstants;
@@ -15,7 +14,6 @@ import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.BooksContainer;
 import tstProj.Data.Interfaces.BooksTypesContainer;
 import tstProj.Data.Interfaces.UsersContainer;
-import tstProj.Other.Books1;
 
 public class InitialDb extends HttpServlet {
 	

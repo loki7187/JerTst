@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-
 import tstProj.Data.Entities.BooksTypes;
 import tstProj.Data.Interfaces.BooksTypesContainer;
 
