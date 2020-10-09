@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+
 import tstProj.Data.Entities.Users;
 import tstProj.Data.Interfaces.UsersContainer;
 
@@ -20,8 +21,7 @@ public class UsersContainerDb implements UsersContainer {
 	
 	@Override
 	public Users GetById(Integer ID) {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityManager().find(Users.class, ID);
 	}
 
 	@Override
@@ -38,32 +38,32 @@ public class UsersContainerDb implements UsersContainer {
 
 	@Override
 	public void Save(Users u) {
-		// TODO Auto-generated method stub
+		getEntityManager().persist(u);
 		
 	}
 
 	@Override
 	public void Update(Users u) {
-		// TODO Auto-generated method stub
+		getEntityManager().merge(u);
 		
 	}
 
 	@Override
 	public void SaveAll(List<Users> l) {
-		// TODO Auto-generated method stub
+		l.forEach(b-> Update(b));
 		
 	}
 
 	@Override
 	public void Delete(Users u) {
-		// TODO Auto-generated method stub
+		var em = getEntityManager();
+		em.remove(em.merge(u));
 		
 	}
 
 	@Override
 	public Boolean CheckUsrPwd(String userName, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		return (Boolean)GetByUserName(userName).getPassword().equals(password);
 	}
 
 }

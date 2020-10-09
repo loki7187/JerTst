@@ -46,7 +46,7 @@ public class BooksContainerDb implements BooksContainer{
 
 	@Override
 	public void Update(Books b) {
-		// TODO Auto-generated method stub
+		getEntityManager().merge(b);
 		
 	}
 
@@ -58,7 +58,8 @@ public class BooksContainerDb implements BooksContainer{
 
 	@Override
 	public void Delete(Books b) {
-		// TODO Auto-generated method stub
+		var em = getEntityManager();
+		em.remove(em.merge(b));
 		
 	}
 

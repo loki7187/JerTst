@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+
 import tstProj.Data.Entities.BooksTypes;
 import tstProj.Data.Interfaces.BooksTypesContainer;
 
@@ -20,37 +21,44 @@ public class BooksTypesContainerDb implements BooksTypesContainer{
 	
 	@Override
 	public BooksTypes GetById(Integer ID) {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityManager().find(BooksTypes.class, ID);
 	}
 
 	@Override
 	public BooksTypes GetByBookType(String t) {
-		// TODO Auto-generated method stub
-		return null;
+		var l = new BooksTypes();
+		var em = getEntityManager ();
+		em.getTransaction().begin();
+		l = em.createQuery("select b from BooksTypes b where b.typeName = :typeName", BooksTypes.class)
+		.setParameter("typeName", t)
+		.getSingleResult();
+		em.getTransaction().commit();
+		//em.close();
+		return l;
 	}
 
 	@Override
 	public void Save(BooksTypes bt) {
-		// TODO Auto-generated method stub
+		getEntityManager().persist(bt);
 		
 	}
 
 	@Override
 	public void Update(BooksTypes bt) {
-		// TODO Auto-generated method stub
+		getEntityManager().merge(bt);
 		
 	}
 
 	@Override
 	public void SaveAll(List<BooksTypes> l) {
-		// TODO Auto-generated method stub
+		l.forEach(b-> Update(b));
 		
 	}
 
 	@Override
 	public void Delete(BooksTypes bt) {
-		// TODO Auto-generated method stub
+		var em = getEntityManager();
+		em.remove(em.merge(bt));
 		
 	}
 
