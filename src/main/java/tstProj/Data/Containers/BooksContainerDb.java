@@ -22,8 +22,7 @@ public class BooksContainerDb implements BooksContainer{
 	
 	@Override
 	public Books GetById(Integer ID) {
-		// TODO Auto-generated method stub
-		return null;
+		return getEntityManager().find(Books.class, ID);
 	}
 
 	@Override
@@ -41,7 +40,7 @@ public class BooksContainerDb implements BooksContainer{
 
 	@Override
 	public void Save(Books b) {
-		// TODO Auto-generated method stub
+		getEntityManager().persist(b);
 		
 	}
 
@@ -53,7 +52,7 @@ public class BooksContainerDb implements BooksContainer{
 
 	@Override
 	public void SaveAll(List<Books> l) {
-		// TODO Auto-generated method stub
+		l.forEach(b-> Update(b));
 		
 	}
 
